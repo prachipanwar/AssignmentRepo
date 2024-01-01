@@ -3,7 +3,7 @@ import HomeIndex from "./components/HomeIndex";
 function App() {
   return (
     <>
-      <HomeIndex />
+        <HomeIndex />
     </>
   );
 }
