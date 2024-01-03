@@ -1,9 +1,14 @@
 import HomeIndex from "./components/HomeIndex";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 function App() {
   return (
     <>
-        <HomeIndex />
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<HomeIndex />}></Route>
+        </Routes>
+      </Router>
+      {/* <HomeIndex /> */}
     </>
   );
 }

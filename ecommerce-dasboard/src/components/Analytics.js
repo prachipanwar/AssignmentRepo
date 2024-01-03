@@ -13,7 +13,6 @@ const [cardData,setCardData] = useState([])
     <div className="w-full my-2 lg:m-4">
       <div className="flex flex-row gap-3">
         {cardData?.results?.map((item, index) => {
-          console.log("item bg color", item?.bg_color);
           return (
             <div
               className={`w-full md:w-1/2 lg:w-[30%] flex flex-col md:flex-row justify-evenly items-center p-2.5 rounded-2xl ${item?.bg_color}`}

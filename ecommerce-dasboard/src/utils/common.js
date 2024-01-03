@@ -145,3 +145,55 @@ export const PIE_CHART_DATA = [
   { name: "On Hold", value: 200 },
   { name: "Cancelled", value: 200 },
 ];
+
+export const BARGRAPH_DATA = [
+  {
+    name: "Jan",
+    clothing: 4000,
+    cosmetics: 2400,
+    appliances:4600,
+    amt: 2400,
+  },
+  {
+    name: "Feb",
+    clothing: 3000,
+    cosmetics: 1398,
+    appliances:4600,
+    amt: 2210,
+  },
+  {
+    name: "March",
+    clothing: 2000,
+    cosmetics: 9800,
+    appliances:4600,
+    amt: 2290,
+  },
+  {
+    name: "April",
+    clothing: 2780,
+    cosmetics: 3908,
+    appliances:4600,
+    amt: 2000,
+  },
+  {
+    name: "June",
+    clothing: 1890,
+    cosmetics: 4800,
+    appliances:4600,
+    amt: 2181,
+  },
+  {
+    name: "July",
+    clothing: 2390,
+    cosmetics: 3800,
+    appliances:4600,
+    amt: 2500,
+  },
+  {
+    name: "August",
+    clothing: 3490,
+    cosmetics: 4300,
+    appliances:4600,
+    amt: 2100,
+  },
+];

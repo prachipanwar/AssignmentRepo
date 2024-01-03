@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import CartLogo from "../Images/e-commerceMain.png";
-import Analytics from "./Analytics";
-import LineCharts from "./LineCharts";
-import CardMoney from "../Images/card_money.png";
-import CountUp from "react-countup";
-import PieCharts from "./PieCharts";
 import UserSidePanel from "./UserSidePanel";
+import Dashboard from "./Dashboard";
+import Product from "./Products";
 import { useAdminContext } from "./context";
 export default function HomeIndex() {
   const [openSidePanel, setopenSidePanel] = useState(false);
+  const [openMobilePanel, setOpenMobilePanel] = useState(false);
+  const [selectedTab, setSelectedTab] = useState("dashboard");
   const { adminUsers, setAdminUsers } = useAdminContext();
   const [selectedUser, setSelectedUser] = useState({ ...adminUsers[0] });
 
@@ -18,11 +16,20 @@ export default function HomeIndex() {
 
   const handleAdminChange = (id) => {
     let val = adminUsers.find((user) => user?.id === parseInt(id));
+    console.log("admin users--->",adminUsers)
+    console.log("value---", val);
+    let newAdminArray=[...adminUsers]
+    //to Rearrange admin array
+    newAdminArray.sort((a, b) => {
+      if (a.id === val.id) return -1;
+      if (b.id === val.id) return 1;
+      return 0;
+    });
+    setAdminUsers(newAdminArray)
     setSelectedUser(val);
   };
-
   return (
-    <div className="w-full flex flex-col lg:flex-row items-start">
+    <div className="w-full h-screen flex flex-col lg:flex-row items-start relative">
       {openSidePanel && (
         <div
           className={`w-[15%] h-screen flex justify-start bg-indigo-500 p-5`}
@@ -31,7 +38,7 @@ export default function HomeIndex() {
             selectedUser={selectedUser}
             handleAdminChange={handleAdminChange}
             adminUsers={adminUsers}
-            setSelectedUser
+            setSelectedTab={setSelectedTab}
           />
         </div>
       )}
@@ -40,73 +47,46 @@ export default function HomeIndex() {
           selectedUser={selectedUser}
           handleAdminChange={handleAdminChange}
           adminUsers={adminUsers}
-          setSelectedUser
+          setSelectedTab={setSelectedTab}
+          setOpenMobilePanel={setOpenMobilePanel}
+          openMobilePanel={openMobilePanel}
         />
       </div>
-      <div
-        className={`p-2 lg:p-5 ${
-          openSidePanel ? "pl-2 w-[60%]" : "w-full lg:w-3/4"
-        }`}
-      >
-        <div
-          className={`hidden lg:flex w-full justify-start items-center cursor-pointer`}
-          onClick={openPanel}
-        >
-          {!openSidePanel && (
-            <div className="w-10 h-10">
-              <img src={CartLogo} alt="cart_logo" />
+      {openMobilePanel && (
+        <div className="w-1/2 md:w-1/4 h-20 p-3 rounded-xl absolute right-10 top-10 bg-white">
+          <div className="flex flex-col gap-2 items-center text-indigo-500 text-base font-semibold">
+            <div
+              onClick={() => {
+                setSelectedTab("dashboard");
+              }}
+              className="cursor-pointer"
+            >
+              Dashboard
             </div>
-          )}
-          <div
-            className={`flex text-xl font-bold px-4 hover:text-rose-500 ${
-              openSidePanel ? "text-rose-500" : "text-slate-900"
-            }`}
-          >
-            Dashboard
-          </div>
-        </div>
-        <div className="w-full">
-          <Analytics selectedUser={selectedUser} />
-        </div>
-        <div className="w-full">
-          <LineCharts />
-        </div>
-        <div>
-            Table
-        </div>
-      </div>
-      <div className="hidden lg:block h-screen border border-slate-300"></div>
-      <div className={`hidden lg:block w-1/4 flex flex-col gap-2 p-5`}>
-        <div className={`flex text-xl font-bold px-4 text-rose-500`}>
-          Hello {selectedUser?.name.split(" ")[0]}!
-        </div>
-        <div
-          className={`w-11/12 flex flex-row justify-evenly items-center p-2.5 rounded-2xl bg-rose-500 m-4`}
-        >
-          <div className="w-16 h-16 rounded-full">
-            <img src={CardMoney} alt="card_img" />
-          </div>
-          <div className="flex flex-col gap-1 text-white text-base">
-            <div>Total Profits</div>
-            <div className="text-2xl">{selectedUser?.card_count}</div>
-            <div>
-              <CountUp
-                start={0}
-                end={selectedUser?.count_up}
-                duration={8}
-                prefix="+"
-                suffix="%"
-              />
+            <div
+              onClick={() => {
+                setSelectedTab("product");
+              }}
+              className="cursor-pointer"
+            >
+              Products
             </div>
           </div>
         </div>
-        <div className="w-full">
-          <PieCharts />
-        </div>
-      </div>
-       <div className="block lg:hidden w-full">
-          <PieCharts />
-      </div> 
+      )}
+      {selectedTab === "product" ? (
+        <Product
+          openSidePanel={openSidePanel}
+          openPanel={openPanel}
+          selectedUser={selectedUser}
+        />
+      ) : (
+        <Dashboard
+          openSidePanel={openSidePanel}
+          openPanel={openPanel}
+          selectedUser={selectedUser}
+        />
+      )}
     </div>
   );
 }

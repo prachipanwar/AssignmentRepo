@@ -28,7 +28,7 @@ export default function LineCharts() {
 
   return (
     <div className="w-full">
-      <LineChart width={chartWidth} height={400} margin={{top:30}} data={LINE_GRAPH_DATA}>
+      <LineChart width={chartWidth} height={350} margin={{top:30}} data={LINE_GRAPH_DATA}>
         <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
         <YAxis />
         <Tooltip />
