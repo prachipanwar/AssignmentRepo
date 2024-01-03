@@ -1,12 +1,12 @@
 import { CARDS_DATA } from "../utils/common";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 export default function Analytics({ selectedUser }) {
-const [cardData,setCardData] = useState([])
+  const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
     let arr = CARDS_DATA.filter((item) => item?.id === selectedUser?.id);
-    setCardData(...arr)
+    setCardData(...arr);
   }, [selectedUser]);
 
   return (

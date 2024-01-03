@@ -4,11 +4,11 @@ import { BarChart, Bar, XAxis, Tooltip, Legend } from "recharts";
 import { BARGRAPH_DATA } from "../utils/common";
 
 export default function BarCharts() {
-  const [barGraphWidth, setBarGraphWidth] = useState(350);
+  const [barGraphWidth, setBarGraphWidth] = useState(3800);
 
   useEffect(() => {
     const handleResize = () => {
-      let newbarGraphWidth = 350;
+      let newbarGraphWidth = 380;
       let windowWidth = window.innerWidth;
       if (600 < windowWidth) {
         newbarGraphWidth = 800;

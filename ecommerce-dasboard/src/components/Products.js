@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight,faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import BarCharts from "./BarCharts";
 import CartLogo from "../Images/e-commerceMain.png";
+import ProductTable from "./ProductTable";
 export default function Product({ openPanel, openSidePanel }) {
   return (
     <>
-      <div className={`p-2 lg:p-5 ${openSidePanel ? "pl-2 w-4/5" : "w-full"}`}>
+      <div
+        className={`p-2 lg:p-5 ${openSidePanel ? "pl-2 w-[85%]" : "w-full"}`}
+      >
         <div
           className={`hidden lg:flex w-full justify-start items-center cursor-pointer`}
           onClick={openPanel}
@@ -20,7 +25,17 @@ export default function Product({ openPanel, openSidePanel }) {
             }`}
           >
             Products
+            <span>
+              {" "}
+              <FontAwesomeIcon
+                icon={openSidePanel ? faAngleRight : faAngleLeft}
+                className="cursor-pointer px-2"
+              />
+            </span>
           </div>
+        </div>
+        <div className="w-full">
+          <ProductTable />
         </div>
         <div className="w-full">
           <BarCharts />

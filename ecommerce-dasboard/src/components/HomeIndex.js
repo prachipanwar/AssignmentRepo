@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UserSidePanel from "./UserSidePanel";
 import Dashboard from "./Dashboard";
 import Product from "./Products";
@@ -16,16 +16,14 @@ export default function HomeIndex() {
 
   const handleAdminChange = (id) => {
     let val = adminUsers.find((user) => user?.id === parseInt(id));
-    console.log("admin users--->",adminUsers)
-    console.log("value---", val);
-    let newAdminArray=[...adminUsers]
+    let newAdminArray = [...adminUsers];
     //to Rearrange admin array
     newAdminArray.sort((a, b) => {
       if (a.id === val.id) return -1;
       if (b.id === val.id) return 1;
       return 0;
     });
-    setAdminUsers(newAdminArray)
+    setAdminUsers(newAdminArray);
     setSelectedUser(val);
   };
   return (
@@ -53,7 +51,7 @@ export default function HomeIndex() {
         />
       </div>
       {openMobilePanel && (
-        <div className="w-1/2 md:w-1/4 h-20 p-3 rounded-xl absolute right-10 top-10 bg-white">
+        <div className="w-1/2 md:w-1/4 h-20 p-3 rounded-xl absolute right-10 top-10 bg-white  border border-indigo-500">
           <div className="flex flex-col gap-2 items-center text-indigo-500 text-base font-semibold">
             <div
               onClick={() => {

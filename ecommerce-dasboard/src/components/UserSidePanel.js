@@ -8,8 +8,6 @@ export default function UserSidePanel({
   setOpenMobilePanel,
   openMobilePanel
 }) {
-  console.log("selectedUser", selectedUser);
-
   return (
     <div className="w-full">
       <div className="flex flex-row">
@@ -39,7 +37,7 @@ export default function UserSidePanel({
             </select>
           </div>
         </div>
-        <div className="flex lg:hidden items-center text-white text-xl px-4">
+        <div className="flex lg:hidden items-center text-white text-xl px-4 ">
           <FontAwesomeIcon
             icon={faBars}
             className="cursor-pointer"

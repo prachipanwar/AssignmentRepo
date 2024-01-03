@@ -1,4 +1,6 @@
 import CartLogo from "../Images/e-commerceMain.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight,faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import Analytics from "./Analytics";
 import LineCharts from "./LineCharts";
 import CountUp from "react-countup";
@@ -28,21 +30,28 @@ export default function Dashboard({ openSidePanel, openPanel, selectedUser }) {
             }`}
           >
             Dashboard
+            <span>
+              {" "}
+              <FontAwesomeIcon
+                icon={openSidePanel ? faAngleRight : faAngleLeft}
+                className="cursor-pointer px-2"
+              />
+            </span>
           </div>
         </div>
         <div className="w-full">
           <Analytics selectedUser={selectedUser} />
         </div>
-        <div
-          className={`flex lg:hidden`}
-        >
+        <div className={`flex lg:hidden`}>
           <div className="w-1/3 flex flex-col md:flex-row justify-evenly items-center p-2.5 rounded-2xl bg-rose-500">
             <div className="w-16 h-16 rounded-full">
               <img src={CardMoney} alt="card_img" />
             </div>
             <div className="flex flex-col items-center md:items-start gap-1 text-white text-base">
               <div>Total Profits</div>
-              <div className="text-base md:text-2xl ">{selectedUser?.card_count}</div>
+              <div className="text-base md:text-2xl ">
+                {selectedUser?.card_count}
+              </div>
               <div>
                 <CountUp
                   start={0}
