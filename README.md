@@ -38,4 +38,6 @@ Feel free to explore the various features and visualize the e-commerce data. If 
 
 Happy Dashboarding!
 
+![image](https://github.com/prachipanwar/AssignmentRepo/assets/48548726/3188f8c9-3671-4d93-9792-963654e172ee)
+
 
